@@ -2,12 +2,9 @@ import javax.swing.*;
 import java.awt.*;
    
 public class Assign5 
-{
-   // static for the 57 icons and their corresponding labels
-   // normally we would not have a separate label for each card, but
-   // if we want to display all at once using labels, we need to.
-   
-   static final int NUM_CARD_IMAGES = 57; // 52+ 4 jokers+ 1 back-of-card image
+{  
+   //52 standard playing cards + 4 jokers+ 1 back-of-card image = 57
+   static final int NUM_CARD_IMAGES = 57; 
    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
       
    static void loadCardIcons()
@@ -19,9 +16,9 @@ public class Assign5
 
       for (int suit = 0; suit <= 3; suit++)
       {
-         for (int number = 0; number <= 13; number++)
+         for (int value = 0; value <= 13; value++)
          {
-            icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(number)
+            icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(value)
             + turnIntIntoCardSuit(suit) + ".gif");
             count++;
          }
@@ -30,20 +27,18 @@ public class Assign5
    }
    
    // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
-   static String turnIntIntoCardValue(int k)
+   static String turnIntIntoCardValue(int value)
    {
-      String card[] = {"A", "2", "3", "4", "5", "6", "8", "9", 
-            "T", "J", "Q", "K", "X"};
-      
-      return card[k];
+      String cardValues[] = {"A", "2", "3", "4", "5", "6", "8", "9", 
+            "T", "J", "Q", "K", "X"};   
+      return cardValues[value];
    }
    
    // turns 0 - 3 into "C", "D", "H", "S"
-   static String turnIntIntoCardSuit(int j)
+   static String turnIntIntoCardSuit(int suit)
    {
-      String suit[] = {"C", "D", "H", "S"};
-      
-      return suit[j];
+      String cardSuits[] = {"C", "D", "H", "S"};
+      return cardSuits[suit];
    }
    
    // a simple main to throw all the JLabels out there for the world to see
