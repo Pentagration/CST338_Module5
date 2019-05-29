@@ -51,6 +51,8 @@ public class Assign5
    {
       int k;
       
+      System.out.println(turnIntIntoCardSuit(2));
+      
       // prepare the image icon array
       loadCardIcons();
       
