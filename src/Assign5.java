@@ -16,17 +16,10 @@ public class Assign5
 
       for (int suit = 0; suit < 4; suit++)
       {
-<<<<<<< HEAD
          for (int number = 0; number < 14; number++)
          {
             icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(number)
                + turnIntIntoCardSuit(suit) + ".gif");
-=======
-         for (int value = 0; value <= 13; value++)
-         {
-            icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(value)
-            + turnIntIntoCardSuit(suit) + ".gif");
->>>>>>> c26262b6df66e0e9592b166a9f78d72b5f834500
             count++;
          }
          //*****IS THERE A SMARTER WAY TO DO THE CARD BACK?
@@ -37,16 +30,9 @@ public class Assign5
    // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
    static String turnIntIntoCardValue(int value)
    {
-<<<<<<< HEAD
-      String card[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", 
-            "T", "J", "Q", "K", "X"};
-      
-      return card[k];
-=======
       String cardValues[] = {"A", "2", "3", "4", "5", "6", "8", "9", 
             "T", "J", "Q", "K", "X"};   
       return cardValues[value];
->>>>>>> c26262b6df66e0e9592b166a9f78d72b5f834500
    }
    
    // turns 0 - 3 into "C", "D", "H", "S"
