@@ -10,8 +10,6 @@ public class Assign5
    static void loadCardIcons()
    {
       // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
-      // in a SHORT loop.  For each file name, read it in and use it to
-      // instantiate each of the 57 Icons in the icon[] array.        
       int count = 0;
 
       for (int suit = 0; suit < 4; suit++)
