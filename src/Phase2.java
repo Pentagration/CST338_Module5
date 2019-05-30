@@ -56,16 +56,12 @@ public class CardTable extends JFrame
    //three panels that will appear in the GUI from top to bottom
    public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea;
    
-   /*I INTERPRET THE INSTRUCTIONS TO MEAN WE DON'T NEED A DEFAULT CONSTRUCTOR
-   CardTable()
-   {
-      
-   }
-   */
-   
    CardTable(String title, int numCardsPerHand, int numPlayers)
    {
-      
+      super(); //calls the JFrame parent constructor
+      this.setTitle(title);
+      this.numCardsPerHand = numCardsPerHand;
+      this.numPlayers = numPlayers;
    }
    
    //START accessors
