@@ -6,7 +6,7 @@ public class Assign5
    //52 standard playing cards + 4 jokers + 1 back-of-card image = 57
    static final int NUM_CARD_IMAGES = 57; 
    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
-   
+      
    static void loadCardIcons()
    {
       // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
@@ -16,21 +16,20 @@ public class Assign5
 
       for (int suit = 0; suit < 4; suit++)
       {
-         for (int number = 0; number < 14; number++)
+         for (int value = 0; value < 14; value++)
          {
-            icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(number)
+            icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(value)
                + turnIntIntoCardSuit(suit) + ".gif");
             count++;
          }
-         //*****IS THERE A SMARTER WAY TO DO THE CARD BACK?
-         icon[count] = new ImageIcon("images/BK.gif");
       }
+      icon[count] = new ImageIcon("images/BK.gif");
    }
    
    // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
    static String turnIntIntoCardValue(int value)
    {
-      String cardValues[] = {"A", "2", "3", "4", "5", "6", "8", "9", 
+      String cardValues[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", 
             "T", "J", "Q", "K", "X"};   
       return cardValues[value];
    }
