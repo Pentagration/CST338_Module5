@@ -2,7 +2,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-
 public class Phase2
 {
    static int NUM_CARDS_PER_HAND = 7;
@@ -38,9 +37,14 @@ public class Phase2
 
       // show everything to the user
       myCardTable.setVisible(true);
+      
+      //from Asssign 3 main maybe?
+      //static Card generateRandomCard();
+      
    }
 }
 
+//START class CardTable
 public class CardTable extends JFrame
 {
    static int MAX_CARDS_PER_HAND = 56;
@@ -76,4 +80,33 @@ public class CardTable extends JFrame
    }
    //END accessors
 }
+//END class CardTabel
 
+//START class GUICard
+public class GUICard()
+{
+   //A 2-D array to store cards representation and point values
+   //14 = A thru K + X (X = Joker)
+   //4 = suits
+   private static Icon[][] iconCards = newImageIcon[14][4];
+   private static Icon iconBack;
+   static boolean inconsLoaded = false;
+   
+   static void loadCardIcons()
+   {
+   }
+   
+   static public Icon getIcon(Card card)
+   {
+   }
+   
+   static public Icon getBackCardIcon()
+   {
+   }
+   
+   //Import Card class from Assign 3 and modify
+   
+   //Import Hand class from Assign 3 and modify
+   
+   //Import Deck class from Assign 3 and modify
+}
