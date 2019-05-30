@@ -9,7 +9,7 @@ public class Assign5
    
    static final int NUM_CARD_IMAGES = 57; // 52+ 4 jokers+ 1 back-of-card image
    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
-      
+   
    static void loadCardIcons()
    {
       // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
@@ -17,22 +17,23 @@ public class Assign5
       // instantiate each of the 57 Icons in the icon[] array.        
       int count = 0;
 
-      for (int suit = 0; suit <= 3; suit++)
+      for (int suit = 0; suit < 4; suit++)
       {
-         for (int number = 0; number <= 13; number++)
+         for (int number = 0; number < 14; number++)
          {
             icon[count] = new ImageIcon("images/" + turnIntIntoCardValue(number)
-            + turnIntIntoCardSuit(suit) + ".gif");
+               + turnIntIntoCardSuit(suit) + ".gif");
             count++;
          }
+         //*****IS THERE A SMARTER WAY TO DO THE CARD BACK?
+         icon[count] = new ImageIcon("images/BK.gif");
       }
-      
    }
    
    // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
    static String turnIntIntoCardValue(int k)
    {
-      String card[] = {"A", "2", "3", "4", "5", "6", "8", "9", 
+      String card[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", 
             "T", "J", "Q", "K", "X"};
       
       return card[k];
@@ -50,8 +51,6 @@ public class Assign5
    public static void main(String[] args)
    {
       int k;
-      
-      System.out.println(turnIntIntoCardSuit(2));
       
       // prepare the image icon array
       loadCardIcons();
