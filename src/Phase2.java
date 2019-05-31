@@ -48,6 +48,8 @@ public class Phase2
       
       // and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
+      Card card1 = generateRandomCard();
+      Card card2 = generateRandomCard();
 
       // show everything to the user
       myCardTable.setVisible(true);
@@ -55,6 +57,19 @@ public class Phase2
       //from Asssign 3 main maybe?
       //static Card generateRandomCard();
       
+   }
+   
+   static Card generateRandomCard()
+   {
+      Random rand1 = new Random();
+      int value = rand1.nextInt(Card.cValue.length);
+      
+      Random rand2 = new Random();
+      int suit = rand2.nextInt(Card.Suit.values().length);
+      
+      Card temp = new Card(Card.cValue[value], Card.Suit.values()[suit]);
+      
+      return temp;
    }
 }
 
