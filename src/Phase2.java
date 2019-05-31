@@ -318,7 +318,9 @@ class Card
                }
             }
             
-            if (tempVal1 > tempVal2)
+            // should this be >= ?  If we have 887 for example, 8 !> 8, so 
+            // nothing happens, but we would want to bubble up higher right?
+            if (tempVal1 > tempVal2) 
             {
                Card temp = cArray[j];
                cArray[j] = cArray[j+1];
@@ -621,6 +623,8 @@ class Deck
       //put all of the cards in the deck back into the right order according to 
       //their values.  Is there another method somewhere that already does this 
       //that you could refer to?
+      
+      Card.arraySort(this.cards, this.getNumCards());
    }
    
    public int getNumCards()
