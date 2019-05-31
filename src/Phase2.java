@@ -8,6 +8,7 @@ MAIN: likely we'll add to main as we are coding the others
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import java.util.Random;
 
 public class Phase2
 {
@@ -318,7 +319,9 @@ class Card
                }
             }
             
-            if (tempVal1 > tempVal2)
+            // should this be >= ?  If we have 887 for example, 8 !> 8, so 
+            // nothing happens, but we would want to bubble up higher right?
+            if (tempVal1 > tempVal2) 
             {
                Card temp = cArray[j];
                cArray[j] = cArray[j+1];
@@ -600,6 +603,34 @@ class Deck
             masterPack[k++] = new Card(Card.cValue[j], Card.Suit.values()[i]);
          }
       }
+   }
+   
+   public boolean addCard(Card card)
+   {
+      //make sure that there are not too many instances of the card in the 
+      //deck if you add it.  Return false if there will be too many.  It should 
+      //put the card on the top of the deck.
+   }
+   
+   public boolean removeCard(Card card)
+   {
+      //you are looking to remove a specific card from the deck.  Put the 
+      //current top card into its place.  Be sure the card you need is actually 
+      //still in the deck, if not return false.
+   }
+   
+   public void sort()
+   {
+      //put all of the cards in the deck back into the right order according to 
+      //their values.  Is there another method somewhere that already does this 
+      //that you could refer to?
+      
+      Card.arraySort(this.cards, this.getNumCards());
+   }
+   
+   public int getNumCards()
+   {
+      //return the number of cards remaining in the deck.
    }
 }
 //END class Deck
