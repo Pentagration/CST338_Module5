@@ -286,11 +286,32 @@ class Card
    
    static void arraySort(Card[] cArray, int arraySize)
    {
+      int tempVal1 = 0;
+      int tempVal2 = 0;
+      
       for (int i = 0; i < arraySize - 1; i++)
       {
          for (int j = 0; j < arraySize - i - 1; j++)
          {
-            if (cArray[j] > cArray[j+1])
+            for (int x = 0; x < valuRanks.length; x++)
+            {
+               if(valuRanks[x] == cArray[j].getValue())
+               {
+                  tempVal1 = x;
+                  break;
+               }
+            }
+            
+            for (int y = 0; y < valuRanks.length; y++)
+            {
+               if(valuRanks[y] == cArray[j + 1].getValue())
+               {
+                  tempVal2 = y;
+                  break;
+               }
+            }
+            
+            if (tempVal1 > tempVal2)
             {
                Card temp = cArray[j];
                cArray[j] = cArray[j+1];
