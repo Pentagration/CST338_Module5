@@ -87,7 +87,8 @@ class CardTable extends JFrame
       mainPanel.setLayout(new GridLayout(3,1)); //3 = rows, 1 = columns
       mainPanel.add(pnlComputerHand);
       mainPanel.add(pnlPlayArea);
-      mainPanel.add(pnlPlayArea); 
+      mainPanel.add(pnlHumanHand); 
+      add(mainPanel);
    }
    
    //START accessors
