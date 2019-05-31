@@ -62,10 +62,24 @@ public class CardTable extends JFrame
       this.setTitle(title);
       this.numCardsPerHand = numCardsPerHand;
       this.numPlayers = numPlayers;
-      this.pnlComputerHand = new JPanel();
-      this.pnlHumanHand = new JPanel();
-      this.pnlPlayArea = new JPanel();
+      
+      
    }
+   
+   /*NO MUTATORS DO WE NEED THE ISVALID? JPETTIT
+   private boolean isValid(String title, int numCardsPerHand, int numPlayers)
+   {  
+      if (title.length() <= 0 || numCardsPerHand <= 0 || numPlayers <= 0 ||
+            numCardsPerHand > MAX_CARDS_PER_HAND || numPlayers > MAX_PLAYERS)
+      {
+         return false;
+      }
+      else
+      {
+         return true;
+      }
+   }
+   */
    
    //START accessors
    public int getnumCardsPerHand()
