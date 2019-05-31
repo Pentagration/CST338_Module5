@@ -32,13 +32,19 @@ public class Phase2
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       // show everything to the user
-      myCardTable.setVisible(true);
+      //myCardTable.setVisible(true);
 
       // CREATE LABELS ----------------------------------------------------
       //code goes here ...
+      JLabel cpuHand = new JLabel("Computer");
+      JLabel playerHand = new JLabel("Player");
+      JLabel playArea = new JLabel("Table");
   
       // ADD LABELS TO PANELS -----------------------------------------
       //code goes here ...
+      myCardTable.pnlComputerHand.add(cpuHand);
+      myCardTable.pnlHumanHand.add(playerHand);
+      myCardTable.pnlPlayArea.add(playArea);
       
       // and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
@@ -53,7 +59,7 @@ public class Phase2
 }
 
 //START class CardTable
-public class CardTable extends JFrame
+class CardTable extends JFrame
 {
    static int MAX_CARDS_PER_HAND = 56;
    static int MAX_PLAYERS = 2;
@@ -100,12 +106,12 @@ public class CardTable extends JFrame
 //END class CardTable
 
 //START class GUICard
-public class GUICard()
+class GUICard
 {
    //A 2-D array to store cards representation and point values
    //14 = A thru K + X (X = Joker)
    //4 = suits
-   private static Icon[][] iconCards = newImageIcon[14][4];
+   private static Icon[][] iconCards = new ImageIcon[14][4];
    private static Icon iconBack;
    static boolean inconsLoaded = false;
    
