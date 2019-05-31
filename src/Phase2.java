@@ -630,6 +630,7 @@ class Deck
    public int getNumCards()
    {
       //return the number of cards remaining in the deck.
+      return (topCard + 1);
    }
 }
 //END class Deck
