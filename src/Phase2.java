@@ -139,7 +139,7 @@ class GUICard
       {
          for (Card.Suit s: Card.Suit.values())
          {
-            sb.append(Card.cValue[i] + s.name() + ".gif");
+            sb.append(Card.cValue[i] + s.toString() + ".gif");
             iconCards[i][s.ordinal()] = new ImageIcon(sb.toString());
             sb.setLength(0);
          }
