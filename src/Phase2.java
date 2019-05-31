@@ -62,6 +62,9 @@ public class CardTable extends JFrame
       this.setTitle(title);
       this.numCardsPerHand = numCardsPerHand;
       this.numPlayers = numPlayers;
+      this.pnlComputerHand = new JPanel();
+      this.pnlHumanHand = new JPanel();
+      this.pnlPlayArea = new JPanel();
    }
    
    //START accessors
