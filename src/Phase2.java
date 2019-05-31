@@ -636,6 +636,20 @@ class Deck
       //make sure that there are not too many instances of the card in the 
       //deck if you add it.  Return false if there will be too many.  It should 
       //put the card on the top of the deck.
+      
+      int count = 0;
+      
+      // get number of cards in the deck already
+      for (int i = 0; i < cards.length; i++)
+      {
+         if (cards[i].equals(card))
+         {
+            count++;
+         }
+      }
+      
+      // check and see if too many
+      
    }
    
    public boolean removeCard(Card card)
