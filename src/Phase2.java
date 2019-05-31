@@ -5,7 +5,7 @@ import javax.swing.border.*;
 public class Phase2
 {
    static int NUM_CARDS_PER_HAND = 7;
-   static int  NUM_PLAYERS = 2;
+   static int NUM_PLAYERS = 2;
    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];  
    static JLabel[] playedCardLabels  = new JLabel[NUM_PLAYERS]; 
@@ -27,13 +27,13 @@ public class Phase2
       myCardTable.setVisible(true);
 
       // CREATE LABELS ----------------------------------------------------
-      code goes here ...
+      //code goes here ...
   
       // ADD LABELS TO PANELS -----------------------------------------
-      code goes here ...
+      //code goes here ...
       
       // and two random cards in the play region (simulating a computer/hum ply)
-      code goes here ...
+      //code goes here ...
 
       // show everything to the user
       myCardTable.setVisible(true);
@@ -54,32 +54,28 @@ public class CardTable extends JFrame
    private int numPlayers;
    
    //three panels that will appear in the GUI from top to bottom
-   public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea;
+   public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea, mainPanel;
    
    CardTable(String title, int numCardsPerHand, int numPlayers)
    {
-      super(); //calls the JFrame parent constructor
-      this.setTitle(title);
+      super(title); //references the JFrame parent class objects
+      
+      //this.setTitle(title);
       this.numCardsPerHand = numCardsPerHand;
       this.numPlayers = numPlayers;
       
+      //Create play areas for computer (TOP), play area(MID), and human hand (BTM)
+      this.mainPanel = new JPanel();
+      this.pnlComputerHand = new JPanel();
+      this.pnlPlayArea = new JPanel();
+      this.pnlHumanHand = new JPanel();
       
+      //Create the panel layout
+      mainPanel.setLayout(new GridLayout(3,1)); //3 = rows, 1 = columns
+      mainPanel.add(pnlComputerHand);
+      mainPanel.add(pnlPlayArea);
+      mainPanel.add(pnlPlayArea); 
    }
-   
-   /*NO MUTATORS DO WE NEED THE ISVALID? JPETTIT
-   private boolean isValid(String title, int numCardsPerHand, int numPlayers)
-   {  
-      if (title.length() <= 0 || numCardsPerHand <= 0 || numPlayers <= 0 ||
-            numCardsPerHand > MAX_CARDS_PER_HAND || numPlayers > MAX_PLAYERS)
-      {
-         return false;
-      }
-      else
-      {
-         return true;
-      }
-   }
-   */
    
    //START accessors
    public int getnumCardsPerHand()
