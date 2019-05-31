@@ -454,6 +454,11 @@ class Hand
          return tempCard;
       }
    }
+   
+   public void sort()
+   {
+      Card.arraySort(this.myCards, this.numCards);
+   }
 }
 //END class Hand   
 
