@@ -8,6 +8,7 @@ MAIN: likely we'll add to main as we are coding the others
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import java.util.Random;
 
 public class Phase2
 {
