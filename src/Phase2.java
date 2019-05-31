@@ -133,6 +133,17 @@ class GUICard
    
    static void loadCardIcons()
    {
+      int rows = iconCards.length;
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < rows; i++)
+      {
+         for (Card.Suit s: Card.Suit.values())
+         {
+            sb.append(Card.cValue[i] + s.name() + ".gif");
+            iconCards[i][s.ordinal()] = new ImageIcon(sb.toString());
+            sb.setLength(0);
+         }
+      }
    }
    
    static public Icon getIcon(Card card)
