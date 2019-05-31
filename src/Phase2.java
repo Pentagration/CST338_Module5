@@ -380,13 +380,26 @@ class Hand
     * position of the hand array.
     * @return a representation of the top card from the players hand
     */
-   public Card playCard()
+   public Card playCard(int cardIndex)
    {
-      Card play = myCards[numCards-1];
-      myCards[numCards-1] = null;
-      this.numCards--;
-      return play; 
-   }
+      if ( numCards == 0 ) //error
+      {
+         //Creates a card that does not work
+         return new Card('M', Card.Suit.spades);
+      }
+      //Decreases numCards.
+      Card card = myCards[cardIndex];
+      
+      numCards--;
+      for(int i = cardIndex; i < numCards; i++)
+      {
+         myCards[i] = myCards[i+1];
+      }
+      
+      myCards[numCards] = null;
+      
+      return card;
+    }
    
    /**
     * toString() concatenates the cards in the hand into a single string.
