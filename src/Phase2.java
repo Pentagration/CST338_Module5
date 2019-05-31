@@ -601,5 +601,31 @@ class Deck
          }
       }
    }
+   
+   public boolean addCard(Card card)
+   {
+      //make sure that there are not too many instances of the card in the 
+      //deck if you add it.  Return false if there will be too many.  It should 
+      //put the card on the top of the deck.
+   }
+   
+   public boolean removeCard(Card card)
+   {
+      //you are looking to remove a specific card from the deck.  Put the 
+      //current top card into its place.  Be sure the card you need is actually 
+      //still in the deck, if not return false.
+   }
+   
+   public void sort()
+   {
+      //put all of the cards in the deck back into the right order according to 
+      //their values.  Is there another method somewhere that already does this 
+      //that you could refer to?
+   }
+   
+   public int getNumCards()
+   {
+      //return the number of cards remaining in the deck.
+   }
 }
 //END class Deck
