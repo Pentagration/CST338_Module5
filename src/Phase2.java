@@ -481,9 +481,9 @@ class Hand
 */
 class Deck
 {
-   public static final int MAX_CARDS = 6 * 52;
+   public static final int MAX_CARDS = 6 * 56;
    
-   private static Card[] masterPack = new Card[52];
+   private static Card[] masterPack = new Card[56];
    Card[] cards;
    int topCard;
 
