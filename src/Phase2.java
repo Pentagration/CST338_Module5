@@ -1,3 +1,10 @@
+/* Assignments:
+CARDTABLE: Jason / Marcus
+GUICARD: Colin / Sergio
+CLEANUP EXISTING CARD / HAND / DECK: Adam to start
+MAIN: likely we'll add to main as we are coding the others
+*/
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -93,7 +100,7 @@ public class CardTable extends JFrame
    }
    //END accessors
 }
-//END class CardTabel
+//END class CardTable
 
 //START class GUICard
 public class GUICard()
@@ -117,6 +124,7 @@ public class GUICard()
    {
    }
 }   
+//END class GUICard
 
 //START class Card
 /**
