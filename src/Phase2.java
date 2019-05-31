@@ -145,8 +145,10 @@ class Card
     * A public static final char cValue[] stores the values of each card 1-9 and 
     * T-A.  Ten is represented by 'T', not '10'.  
     */
-   public static final char cValue[] = {'K', 'Q', 'J', 'T', '9', '8', '7', '6',
-         '5', '4', '3', '2', 'A'};
+   public static final char cValue[] = {'X', 'K', 'Q', 'J', 'T', '9', '8', '7', 
+         '6', '5', '4', '3', '2', 'A'};
+   public static char[] valuRanks = {'A', '2', '3', '4', '5', '6', '7', '8', 
+         '9', 'T', 'J', 'Q', 'K', 'X'};
    private char value;
    private Suit suit;
    private boolean errorFlag;
@@ -285,6 +287,22 @@ class Card
       return card;
       }
     } 
+   
+   static void arraySort(Card[] cArray, int arraySize)
+   {
+      for (int i = 0; i < arraySize - 1; i++)
+      {
+         for (int j = 0; j < arraySize - i - 1; j++)
+         {
+            if (cArray[j] > cArray[j+1])
+            {
+               Card temp = cArray[j];
+               cArray[j] = cArray[j+1];
+               cArray[j+1] = temp;
+            }
+         }
+      }
+   }
 }
 //END class Card
 
