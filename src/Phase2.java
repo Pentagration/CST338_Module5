@@ -58,9 +58,9 @@ public class CardTable extends JFrame
    
    CardTable(String title, int numCardsPerHand, int numPlayers)
    {
-      super(title); //references the JFrame parent class objects
-      
-      //this.setTitle(title);
+      super(); //references the JFrame parent class objects
+   
+      this.setTitle(title);
       this.numCardsPerHand = numCardsPerHand;
       this.numPlayers = numPlayers;
       
