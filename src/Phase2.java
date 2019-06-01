@@ -108,7 +108,7 @@ class CardTable extends JFrame
       this.pnlComputerHand = new JPanel();
       this.pnlPlayArea = new JPanel();
       this.pnlHumanHand = new JPanel();
-
+      
       //Create the panel layout
       mainPanel.setLayout(new GridLayout(3,1)); //3 = rows, 1 = columns
       
