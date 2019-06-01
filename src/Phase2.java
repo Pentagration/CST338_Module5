@@ -129,21 +129,25 @@ class GUICard
    //4 = suits
    private static Icon[][] iconCards = new ImageIcon[14][4];
    private static Icon iconBack;
-   static boolean inconsLoaded = false;
+   static boolean iconsLoaded = false;
    
    static void loadCardIcons()
    {
+      if (iconsLoaded == true)
+         return;
       int rows = iconCards.length;
       StringBuilder sb = new StringBuilder();
       for (int i = 0; i < rows; i++)
       {
          for (Card.Suit s: Card.Suit.values())
          {
-            sb.append(Card.cValue[i] + s.toString() + ".gif");
+            sb.append("images/" + Card.cValue[i] + s.toString() + ".gif");
             iconCards[i][s.ordinal()] = new ImageIcon(sb.toString());
             sb.setLength(0);
          }
       }
+      iconBack = new ImageIcon("images/" + "BK.gif");
+      iconsLoaded = true;
    }
    
    static public Icon getIcon(Card card)
