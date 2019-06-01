@@ -131,14 +131,9 @@ class GUICard
    //4 = suits
    private static Icon[][] iconCards = new ImageIcon[14][4];
    private static Icon iconBack;
-<<<<<<< HEAD
    static boolean iconsLoaded = false;
-   
-=======
-   static boolean inconsLoaded = false;
 
    //generates image icon array from files
->>>>>>> 24c7de719d0c2fe82c4266d851ddf6dfe232d056
    static void loadCardIcons()
    {
       if (iconsLoaded == true)
@@ -166,64 +161,33 @@ class GUICard
 
    static public Icon getBackCardIcon()
    {
-     return iconback;
+     return iconBack;
    }
 
    private static int suitAsInt(Card card)
    {
-     Card.suit cardsSuit = card.getSuit();
-     for (int i = 0; i <= 13; i++)
-     {
-        if (Card.suitRanks[i] == cardsSuit)
-          return i;
-     }
-     return 0; // should return default clubs
+     return card.getSuit().ordinal();
    }
 
-   private static in valueAsInt(Card card)
+   private static int valueAsInt(Card card)
    {
-     char cardsValue = card.getVal();
-
-     if(cardsValue == 'A')
-      return 0;
-     if(cardsValue == 'X')
-      return 13;
-     for(int k = 0; k <= 11; k++)
+     char cardsValue = card.getValue();
+     for(int k = 0; k < 14; k++)
      {
-       if(Card.valueRanks[k] == cardsValue)
-        return k +1 ;
+         if(Card.valuRanks[k] == cardsValue)
+            return k;
       }
       return 0; //should return an A
    }
    static String turnIntIntoCardValue(int k)
       {
-         String returnValue = null;
-         String[] compValue = {"A", "2", "3", "4", "5", "6", "7", "8", "9",
-               "T", "J", "Q", "K", "X"};
-         if(k >=0 && k <= 13)
-         {
-            returnValue = compValue[k];
-         }else{
-            System.out.println("returning defalut value A");
-            return compValue[0];//should return A.
-         }
-         return returnValue;
+         return String.valueOf(Card.valuRanks[k]);
       }
 
    // turns 0 - 3 into c, d, h .s
     static String turnIntIntoCardSuit(int j)
       {
-
-         String returnSuit = null;
-         String[] compSuit = {"C", "D", "H", "S"};
-         if(j >=0 && j <= 3)
-         {
-            returnSuit = compSuit[j];
-         }else{
-            System.out.println("returning defalut suit C");
-            return compSuit[0];// should return defualt
-         }
-         return returnSuit;
+         return Card.Suit.values()[j].toString();
       }
 
 }
