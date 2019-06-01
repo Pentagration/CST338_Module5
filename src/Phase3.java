@@ -5,12 +5,6 @@
  * EXERCISE: Module 5 GUI Cards - Phase 2
  */
 
-/* Assignments:
- * CARDTABLE: Jason / Marcus
- * GUICARD: Colin / Sergio
- * CLEANUP EXISTING CARD / HAND / DECK: Adam
-*/
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -46,7 +40,7 @@ public class Phase3
       // establish main frame in which program will run
       CardTable myCardTable
          = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
-      myCardTable.setSize(800, 600);
+      myCardTable.setSize(800, 800);
       myCardTable.setLocationRelativeTo(null);
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
@@ -782,7 +776,6 @@ class Deck
    }
 }
 //END class Deck
-
 
 //class CardGameFramework  ----------------------------------------------------
 class CardGameFramework
