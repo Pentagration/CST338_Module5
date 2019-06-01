@@ -715,9 +715,6 @@ class Deck
       }
 
       // check and see if too many
-<<<<<<< HEAD
-
-=======
       if (count > 0)
       {
          return false;
@@ -727,7 +724,6 @@ class Deck
          this.cards[topCard++] = card;
          return true;
       }
->>>>>>> 88b284481c215702566cefc55ed9f0f1f8b07365
    }
 
    public boolean removeCard(Card card)
