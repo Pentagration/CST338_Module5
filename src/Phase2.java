@@ -36,9 +36,9 @@ public class Phase2
 
       // CREATE LABELS ----------------------------------------------------
       //code goes here ...
-      JLabel cpuHand = new JLabel("Computer");
-      JLabel playerHand = new JLabel("Player");
-      JLabel playArea = new JLabel("Table");
+      JLabel cpuHand = new JLabel("Computer Hand");
+      JLabel playerHand = new JLabel("Your Hand");
+      JLabel playArea = new JLabel("Playing Area");
       Card card1 = generateRandomCard();
       computerLabels[0] = new JLabel(GUICard.getIcon(card1));
       myCardTable.pnlComputerHand.add(computerLabels[0]);
@@ -48,6 +48,8 @@ public class Phase2
       myCardTable.pnlComputerHand.add(cpuHand);
       myCardTable.pnlHumanHand.add(playerHand);
       myCardTable.pnlPlayArea.add(playArea);
+      
+      //
 
       // and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
