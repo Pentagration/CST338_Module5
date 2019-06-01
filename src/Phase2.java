@@ -1,8 +1,14 @@
+/*
+ * STUDENTS: Jason Pettit, Sergio Quiroz, Marcus Gonzalez,
+ *           Adam Houser, Colin Reed
+ * COURSE: CST 338-30_SU19
+ * EXERCISE: Module 5 GUI Cards - Phase 2
+ */
+
 /* Assignments:
-CARDTABLE: Jason / Marcus
-GUICARD: Colin / Sergio
-CLEANUP EXISTING CARD / HAND / DECK: Adam to start
-MAIN: likely we'll add to main as we are coding the others
+ * CARDTABLE: Jason / Marcus
+ * GUICARD: Colin / Sergio
+ * CLEANUP EXISTING CARD / HAND / DECK: Adam
 */
 
 import java.awt.*;
@@ -31,21 +37,20 @@ public class Phase2
       myCardTable.setLocationRelativeTo(null);
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
-      //Create card labels using according to NUM_CARDS_PER_HAND and 
-      //NUM_PLAYERS
+      //Create labels and text for the playing area
       playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));
       playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));
       playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
       playLabelText[1] = new JLabel("Player", JLabel.CENTER);
       
-      
+      //select cards aka labels for the computer and player
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          computerLabels[k] = new JLabel(GUICard.getBackCardIcon());
          humanLabels[k] = new JLabel(GUICard.getIcon(generateRandomCard()));
       }
       
-      //Add labels to panels 
+      //Add cards aka labels to panels 
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          myCardTable.pnlComputerHand.add(computerLabels[k]);
@@ -53,7 +58,6 @@ public class Phase2
       }
       
       //and two random cards in the play region (simulating a computer/hum ply)
-      //code goes here ...
       for (k = 0; k < NUM_PLAYERS; k++)
       {
          myCardTable.pnlPlayArea.add(playedCardLabels[k]);
@@ -103,7 +107,8 @@ class CardTable extends JFrame
       
       this.numCardsPerHand = numCardsPerHand;
 
-      //Create play areas for computer (TOP), play area(MID), and human hand (BTM)
+      //Create play areas for computer (TOP), play area(MID), 
+      //and human hand (BTM)
       this.mainPanel = new JPanel();
       this.pnlComputerHand = new JPanel();
       this.pnlPlayArea = new JPanel();
@@ -113,7 +118,8 @@ class CardTable extends JFrame
       mainPanel.setLayout(new GridLayout(3,1)); //3 = rows, 1 = columns
       
       mainPanel.add(pnlComputerHand);
-      pnlComputerHand.setBorder(BorderFactory.createTitledBorder("Computer Hand"));
+      pnlComputerHand.setBorder(BorderFactory.createTitledBorder
+            ("Computer Hand"));
       pnlComputerHand.setLayout(new GridLayout(1,numCardsPerHand));
       
       mainPanel.add(pnlPlayArea);
@@ -141,9 +147,8 @@ class CardTable extends JFrame
 }
 //END class CardTable
 
-//-------------------
+
 //START class GUICard
-//-------------------
 class GUICard
 {
    //A 2-D array to store cards representation and point values
@@ -211,9 +216,8 @@ class GUICard
       }
 
 }
-//-----------------
 //END class GUICard
-//-----------------
+
 
 //START class Card
 /**
