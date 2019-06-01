@@ -60,12 +60,6 @@ public class Phase2
          myCardTable.pnlHumanHand.add(humanLabels[k]);
       }
       
-      
-      myCardTable.pnlComputerHand.add(cpuHand);
-      myCardTable.pnlHumanHand.add(playerHand);
-      myCardTable.pnlPlayArea.add(playArea);
-      
-
       //and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
       for (k = 0; k < NUM_PLAYERS; k++)
@@ -80,10 +74,6 @@ public class Phase2
 
       // show everything to the user
       myCardTable.setVisible(true);
-
-      //from Asssign 3 main maybe?
-      //static Card generateRandomCard();
-
    }
 
    static Card generateRandomCard()
