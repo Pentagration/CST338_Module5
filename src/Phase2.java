@@ -39,6 +39,9 @@ public class Phase2
       JLabel cpuHand = new JLabel("Computer");
       JLabel playerHand = new JLabel("Player");
       JLabel playArea = new JLabel("Table");
+      Card card1 = generateRandomCard();
+      computerLabels[0] = new JLabel(GUICard.getIcon(card1));
+      myCardTable.pnlComputerHand.add(computerLabels[0]);
 
       // ADD LABELS TO PANELS -----------------------------------------
       //code goes here ...
@@ -48,7 +51,6 @@ public class Phase2
 
       // and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
-      Card card1 = generateRandomCard();
       Card card2 = generateRandomCard();
 
       // show everything to the user
@@ -144,7 +146,7 @@ class GUICard
       {
          for (Card.Suit s: Card.Suit.values())
          {
-            sb.append("images/" + Card.cValue[i] + s.toString() + ".gif");
+            sb.append("images/" + Card.cValue[i] + Character.toUpperCase(s.toString().charAt(0)) + ".gif");
             iconCards[i][s.ordinal()] = new ImageIcon(sb.toString());
             sb.setLength(0);
          }
