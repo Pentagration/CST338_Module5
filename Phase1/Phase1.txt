@@ -1,3 +1,10 @@
+/*
+ * STUDENTS: Jason Pettit, Sergio Quiroz, Marcus Gonzalez,
+ *           Adam Houser, Colin Reed
+ * COURSE: CST 338-30_SU19
+ * EXERCISE: Module 5 GUI Cards - Phase 1
+ */
+
 import javax.swing.*;
 import java.awt.*;
 
