@@ -27,15 +27,10 @@ public class Phase2
       // establish main frame in which program will run
       CardTable myCardTable
          = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
-      myCardTable.setSize(800, 600);
+      myCardTable.setSize(800, 800);
       myCardTable.setLocationRelativeTo(null);
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-      //Create region labels
-      JLabel cpuHand = new JLabel("Computer Hand");
-      JLabel playerHand = new JLabel("Your Hand");
-      JLabel playArea = new JLabel("Playing Area");
-
+      
       //Create card labels using according to NUM_CARDS_PER_HAND and 
       //NUM_PLAYERS
       playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));
@@ -50,12 +45,7 @@ public class Phase2
          humanLabels[k] = new JLabel(GUICard.getIcon(generateRandomCard()));
       }
       
-      //Add labels to panels
-      myCardTable.pnlComputerHand.add(cpuHand);
-      myCardTable.pnlPlayArea.add(playArea);
-      myCardTable.pnlHumanHand.add(playerHand);
-      
-      
+      //Add labels to panels 
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          myCardTable.pnlComputerHand.add(computerLabels[k]);
@@ -109,8 +99,9 @@ class CardTable extends JFrame
       super(); //references the JFrame parent class objects
 
       this.setTitle(title);
+      this.setLayout(new BorderLayout());
+      
       this.numCardsPerHand = numCardsPerHand;
-      this.numPlayers = numPlayers;
 
       //Create play areas for computer (TOP), play area(MID), and human hand (BTM)
       this.mainPanel = new JPanel();
@@ -120,9 +111,19 @@ class CardTable extends JFrame
 
       //Create the panel layout
       mainPanel.setLayout(new GridLayout(3,1)); //3 = rows, 1 = columns
+      
       mainPanel.add(pnlComputerHand);
+      pnlComputerHand.setBorder(BorderFactory.createTitledBorder("Computer Hand"));
+      pnlComputerHand.setLayout(new GridLayout(1,numCardsPerHand));
+      
       mainPanel.add(pnlPlayArea);
+      pnlPlayArea.setBorder(BorderFactory.createTitledBorder("Playing Area"));
+      pnlPlayArea.setLayout(new GridLayout(2,2));
+      
       mainPanel.add(pnlHumanHand);
+      pnlHumanHand.setBorder(BorderFactory.createTitledBorder("Your Hand"));
+      pnlHumanHand.setLayout(new GridLayout(1,numCardsPerHand));
+      
       add(mainPanel);
    }
 
