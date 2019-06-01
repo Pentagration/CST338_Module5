@@ -31,16 +31,13 @@ public class Phase2
       myCardTable.setLocationRelativeTo(null);
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-      // show everything to the user
-      //myCardTable.setVisible(true);
-
-      // CREATE LABELS ----------------------------------------------------
+      //Create region labels
       JLabel cpuHand = new JLabel("Computer Hand");
       JLabel playerHand = new JLabel("Your Hand");
       JLabel playArea = new JLabel("Playing Area");
 
-
-      //Create labels
+      //Create card labels using according to NUM_CARDS_PER_HAND and 
+      //NUM_PLAYERS
       playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));
       playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));
       playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
@@ -54,6 +51,11 @@ public class Phase2
       }
       
       //Add labels to panels
+      myCardTable.pnlComputerHand.add(cpuHand);
+      myCardTable.pnlPlayArea.add(playArea);
+      myCardTable.pnlHumanHand.add(playerHand);
+      
+      
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          myCardTable.pnlComputerHand.add(computerLabels[k]);
