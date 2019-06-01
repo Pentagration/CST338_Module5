@@ -35,25 +35,48 @@ public class Phase2
       //myCardTable.setVisible(true);
 
       // CREATE LABELS ----------------------------------------------------
-      //code goes here ...
       JLabel cpuHand = new JLabel("Computer Hand");
       JLabel playerHand = new JLabel("Your Hand");
       JLabel playArea = new JLabel("Playing Area");
-      Card card1 = generateRandomCard();
-      computerLabels[0] = new JLabel(GUICard.getIcon(card1));
-      myCardTable.pnlComputerHand.add(computerLabels[0]);
 
-      // ADD LABELS TO PANELS -----------------------------------------
-      //code goes here ...
+
+      //Create labels
+      playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));
+      playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));
+      playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
+      playLabelText[1] = new JLabel("Player", JLabel.CENTER);
+      
+      
+      for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+      {
+         computerLabels[k] = new JLabel(GUICard.getBackCardIcon());
+         humanLabels[k] = new JLabel(GUICard.getIcon(generateRandomCard()));
+      }
+      
+      //Add labels to panels
+      for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+      {
+         myCardTable.pnlComputerHand.add(computerLabels[k]);
+         myCardTable.pnlHumanHand.add(humanLabels[k]);
+      }
+      
+      
       myCardTable.pnlComputerHand.add(cpuHand);
       myCardTable.pnlHumanHand.add(playerHand);
       myCardTable.pnlPlayArea.add(playArea);
       
-      //
 
-      // and two random cards in the play region (simulating a computer/hum ply)
+      //and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
-      Card card2 = generateRandomCard();
+      for (k = 0; k < NUM_PLAYERS; k++)
+      {
+         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+      }
+      
+      for (k = 0; k < NUM_PLAYERS; k++)
+      {
+         myCardTable.pnlPlayArea.add(playLabelText[k]);
+      }
 
       // show everything to the user
       myCardTable.setVisible(true);
