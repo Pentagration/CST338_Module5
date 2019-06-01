@@ -715,7 +715,19 @@ class Deck
       }
 
       // check and see if too many
+<<<<<<< HEAD
 
+=======
+      if (count > 0)
+      {
+         return false;
+      }
+      else
+      {
+         this.cards[topCard++] = card;
+         return true;
+      }
+>>>>>>> 88b284481c215702566cefc55ed9f0f1f8b07365
    }
 
    public boolean removeCard(Card card)
@@ -723,6 +735,29 @@ class Deck
       //you are looking to remove a specific card from the deck.  Put the
       //current top card into its place.  Be sure the card you need is actually
       //still in the deck, if not return false.
+      
+      int location = -1;
+      
+      // get number of cards in the deck already
+      for (int i = 0; i < cards.length; i++)
+      {
+         if (cards[i].equals(card))
+         {
+            location = i;
+            break;
+         }
+      }
+      
+      if (location > -1)
+      {
+         Card temp = this.dealCard();
+         this.cards[location] = temp;
+         return true;
+      }
+      else
+      {
+         return false;
+      }
    }
 
    public void sort()
