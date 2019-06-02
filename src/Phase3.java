@@ -12,16 +12,20 @@
 */
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import java.util.Random;
 
-public class Phase3
+public class Phase3 
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
-   static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
+   static JButton[] humanLabels = new JButton[NUM_CARDS_PER_HAND];
    static JLabel[] playedCardLabels  = new JLabel[NUM_PLAYERS];
    static JLabel[] playLabelText  = new JLabel[NUM_PLAYERS];
 
@@ -60,7 +64,7 @@ public class Phase3
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          computerLabels[k] = new JLabel(GUICard.getBackCardIcon());
-         humanLabels[k] = new JLabel(GUICard.getIcon(highCardGame.getHand(1)
+         humanLabels[k] = new JButton(GUICard.getIcon(highCardGame.getHand(1)
                .inspectCard(k)));
       }
       
@@ -69,6 +73,12 @@ public class Phase3
       {
          myCardTable.pnlComputerHand.add(computerLabels[k]);
          myCardTable.pnlHumanHand.add(humanLabels[k]);
+      }
+      
+      //Make cards aka buttons fit visual scheme
+      for (k = 0; k < myCardTable.pnlHumanHand.getComponentCount(); k++)
+      {
+         ((JButton) myCardTable.pnlHumanHand.getComponent(k)).setBorderPainted(false);
       }
       
       //and two random cards in the play region (simulating a computer/hum ply)
