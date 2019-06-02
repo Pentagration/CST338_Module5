@@ -39,6 +39,9 @@ public class Phase3
             numPacksPerDeck, numJokersPerPack,  
             numUnusedCardsPerPack, unusedCardsPerPack, 
             NUM_PLAYERS, NUM_CARDS_PER_HAND);
+      
+      // deal from CardGameFramework
+      highCardGame.deal();
 
       // establish main frame in which program will run
       CardTable myCardTable
@@ -57,7 +60,8 @@ public class Phase3
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          computerLabels[k] = new JLabel(GUICard.getBackCardIcon());
-         humanLabels[k] = new JLabel(GUICard.getIcon(generateRandomCard()));
+         humanLabels[k] = new JLabel(GUICard.getIcon(highCardGame.getHand(1)
+               .inspectCard(k)));
       }
       
       //Add cards aka labels to panels 
