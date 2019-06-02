@@ -16,7 +16,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.util.Random;
 
-public class Phase2
+public class Phase3
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
@@ -29,6 +29,16 @@ public class Phase2
    {
       int k;
       Icon tempIcon;
+      //set up CardGameFramework
+      int numPacksPerDeck = 1;
+      int numJokersPerPack = 2;
+      int numUnusedCardsPerPack = 0;
+      Card[] unusedCardsPerPack = null;
+
+      CardGameFramework highCardGame = new CardGameFramework( 
+            numPacksPerDeck, numJokersPerPack,  
+            numUnusedCardsPerPack, unusedCardsPerPack, 
+            NUM_PLAYERS, NUM_CARDS_PER_HAND);
 
       // establish main frame in which program will run
       CardTable myCardTable
