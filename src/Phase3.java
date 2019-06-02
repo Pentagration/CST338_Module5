@@ -20,7 +20,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.util.Random;
 
-public class Phase3 
+public class Phase3 implements ActionListener
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
@@ -76,21 +76,35 @@ public class Phase3
       }
       
       //Make cards aka buttons fit visual scheme
-      for (k = 0; k < myCardTable.pnlHumanHand.getComponentCount(); k++)
+//      for (k = 0; k < myCardTable.pnlHumanHand.getComponentCount(); k++)
+//      {
+//         ((JButton) myCardTable.pnlHumanHand.getComponent(k)).setBorderPainted(false);
+//      }
+      
+      //for testing
+      ((JButton) myCardTable.pnlHumanHand.getComponent(1)).setBorderPainted(false);
+      // add the listener to the jbutton to handle the "pressed" event
+      ((JButton) myCardTable.pnlHumanHand.getComponent(1)).addActionListener(new ActionListener()
       {
-         ((JButton) myCardTable.pnlHumanHand.getComponent(k)).setBorderPainted(false);
-      }
+        public void actionPerformed(ActionEvent e)
+        {
+          // display/center the jdialog when the button is pressed
+           myCardTable.pnlPlayArea.add(humanLabels[1]);
+           myCardTable.pnlHumanHand.remove(1);
+        }
+      });
+      
       
       //and two random cards in the play region (simulating a computer/hum ply)
-      for (k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-      }
-      
-      for (k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playLabelText[k]);
-      }
+//      for (k = 0; k < NUM_PLAYERS; k++)
+//      {
+//         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+//      }
+//      
+//      for (k = 0; k < NUM_PLAYERS; k++)
+//      {
+//         myCardTable.pnlPlayArea.add(playLabelText[k]);
+//      }
 
       // show everything to the user
       myCardTable.setVisible(true);
@@ -107,6 +121,13 @@ public class Phase3
       Card temp = new Card(Card.cValue[value], Card.Suit.values()[suit]);
 
       return temp;
+   }
+
+   @Override
+   public void actionPerformed(ActionEvent e)
+   {
+      // TODO Auto-generated method stub
+      
    }
 }
 
