@@ -82,19 +82,24 @@ public class Phase3 implements ActionListener
 //      }
       
       //for testing
-      ((JButton) myCardTable.pnlHumanHand.getComponent(1)).setBorderPainted(false);
-      // add the listener to the jbutton to handle the "pressed" event
-      ((JButton) myCardTable.pnlHumanHand.getComponent(1)).addActionListener(new ActionListener()
+      int i = 0;
+      while (i < NUM_CARDS_PER_HAND)
       {
-        public void actionPerformed(ActionEvent e)
-        {
-          // display/center the jdialog when the button is pressed
-           myCardTable.pnlPlayArea.add(humanLabels[1]);
-           myCardTable.pnlHumanHand.remove(1);
-        }
-      });
-      
-      
+         ((JButton) myCardTable.pnlHumanHand.getComponent(i)).setBorderPainted(false);
+         // add the listener to the jbutton to handle the "pressed" event
+         ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
+         ((JButton) myCardTable.pnlHumanHand.getComponent(i)).addActionListener(new ActionListener()
+         {
+         public void actionPerformed(ActionEvent e)
+           {
+           JButton btn = (JButton) e.getSource();
+             // display/center the jdialog when the button is pressed
+              myCardTable.pnlPlayArea.add(humanLabels[(Integer)btn.getClientProperty("key")]);
+              myCardTable.pnlHumanHand.remove(1);
+           }
+         });
+         i++;
+      }
       //and two random cards in the play region (simulating a computer/hum ply)
 //      for (k = 0; k < NUM_PLAYERS; k++)
 //      {
