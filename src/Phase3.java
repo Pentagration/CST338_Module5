@@ -78,12 +78,12 @@ public class Phase3
       Random rand1 = new Random();
       int turn = rand1.nextInt(1);
       
-      // this works, but not in the while loop - keeps executing
-      
-      
       int i = 0;
       while (i < NUM_CARDS_PER_HAND)
       {
+         int playerValue = 0;
+         int compValue = 0;
+         
          if (turn == 0 && myCardTable.pnlPlayArea.getComponentCount() == 0)
          {
             // computer plays a card randomly
@@ -92,6 +92,14 @@ public class Phase3
             
             JLabel tempLabel = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
                   .inspectCard(choice)));
+            for (int x = 0; x < Card.valuRanks.length; x++)
+            {
+               if (Card.valuRanks[x] == highCardGame.getHand(0).inspectCard(choice).getValue())
+               {
+                  compValue = x;
+                  System.out.println(compValue);
+               }
+            }
             myCardTable.pnlPlayArea.add(tempLabel);
             myCardTable.pnlComputerHand.remove(choice);
          }
@@ -106,6 +114,15 @@ public class Phase3
             JButton btn = (JButton) e.getSource();
             // display/center the jdialog when the button is pressed
             myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
+            
+            for (int x = 0; x < Card.valuRanks.length; x++)
+            {
+               if (Card.valuRanks[x] == highCardGame.getHand(0).inspectCard((Integer)btn.getClientProperty("key")).getValue())
+               {
+                  //playerValue = x;
+               }
+            }
+            
             myCardTable.pnlHumanHand.remove((Integer)btn.getClientProperty("key"));
             for(int i = 0; i < myCardTable.pnlHumanHand.getComponentCount(); i++)
                ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
@@ -115,17 +132,31 @@ public class Phase3
          }
          });
          
-         if (turn == 1)
+         if (turn == 1 && myCardTable.pnlPlayArea.getComponentCount() == 1)
          {
             // player went first, computer needs to play based on logic
+            for (int j = 0; j < myCardTable.pnlComputerHand.getComponentCount(); j++)
+            {
+               int high = -1;
+               int low = -1;
+               
+               // if a card is higher than player and lower than other high cards
+            }
          }
          
          // decide win and update turn
+         // if player card > computer card turn = 1 and clear
+         playerValue = 20;
+         if (playerValue > compValue)
+         {
+            turn = 1;
+            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);
+            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
+         }
+         
          i++;
       }
-      // rules for computer play
       
-
       // show everything to the user
       myCardTable.setVisible(true);
    }
