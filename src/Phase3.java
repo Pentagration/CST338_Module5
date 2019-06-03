@@ -55,8 +55,8 @@ public class Phase3 implements ActionListener
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
       //Create labels and text for the playing area
-      playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));
-      playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));
+      playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));//computer
+      playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));//player
       playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
       playLabelText[1] = new JLabel("Player", JLabel.CENTER);
       
@@ -91,25 +91,28 @@ public class Phase3 implements ActionListener
          ((JButton) myCardTable.pnlHumanHand.getComponent(i)).addActionListener(new ActionListener()
          {
          public void actionPerformed(ActionEvent e)
-           {
-           JButton btn = (JButton) e.getSource();
-             // display/center the jdialog when the button is pressed
-              myCardTable.pnlPlayArea.add(humanLabels[(Integer)btn.getClientProperty("key")]);
-              myCardTable.pnlHumanHand.remove(1);
-           }
+         {
+            JButton btn = (JButton) e.getSource();
+            // display/center the jdialog when the button is pressed
+            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
+            playedCardLabels[1] = new JLabel(btn.getIcon());
+            myCardTable.pnlPlayArea.add(playedCardLabels[1]);
+            myCardTable.setVisible(true);
+         }
          });
          i++;
       }
       //and two random cards in the play region (simulating a computer/hum ply)
-//      for (k = 0; k < NUM_PLAYERS; k++)
-//      {
-//         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-//      }
-//      
-//      for (k = 0; k < NUM_PLAYERS; k++)
-//      {
-//         myCardTable.pnlPlayArea.add(playLabelText[k]);
-//      }
+      
+      for (k = 0; k < NUM_PLAYERS; k++)
+      {
+         myCardTable.pnlPlayArea.add(playLabelText[k]);
+      }
+      
+      for (k = 0; k < NUM_PLAYERS; k++)
+      {
+         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+      }
 
       // show everything to the user
       myCardTable.setVisible(true);
