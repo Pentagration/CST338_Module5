@@ -20,7 +20,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.util.Random;
 
-public class Phase3 implements ActionListener
+public class Phase3
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
@@ -132,13 +132,6 @@ public class Phase3 implements ActionListener
       Card temp = new Card(Card.cValue[value], Card.Suit.values()[suit]);
 
       return temp;
-   }
-
-   @Override
-   public void actionPerformed(ActionEvent e)
-   {
-      // TODO Auto-generated method stub
-      
    }
 }
 
