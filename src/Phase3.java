@@ -79,22 +79,22 @@ public class Phase3
       int turn = rand1.nextInt(1);
       
       // this works, but not in the while loop - keeps executing
-      if (turn == 0)
-      {
-         // computer plays a card randomly
-         Random rand2 = new Random();
-         int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
-         
-         JLabel tempLabel = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
-               .inspectCard(choice)));
-         myCardTable.pnlPlayArea.add(tempLabel);
-         myCardTable.pnlComputerHand.remove(choice);
-      }
+      
       
       int i = 0;
       while (i < NUM_CARDS_PER_HAND)
       {
-         
+         if (turn == 0 && myCardTable.pnlPlayArea.getComponentCount() == 0)
+         {
+            // computer plays a card randomly
+            Random rand2 = new Random();
+            int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
+            
+            JLabel tempLabel = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
+                  .inspectCard(choice)));
+            myCardTable.pnlPlayArea.add(tempLabel);
+            myCardTable.pnlComputerHand.remove(choice);
+         }
          
          ((JButton) myCardTable.pnlHumanHand.getComponent(i)).setBorderPainted(false);
          // add the listener to the jbutton to handle the "pressed" event
