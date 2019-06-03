@@ -95,6 +95,7 @@ public class Phase3 implements ActionListener
             JButton btn = (JButton) e.getSource();
             // display/center the jdialog when the button is pressed
             myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
+            myCardTable.pnlHumanHand.remove((Integer)btn.getClientProperty("key"));
             playedCardLabels[1] = new JLabel(btn.getIcon());
             myCardTable.pnlPlayArea.add(playedCardLabels[1]);
             myCardTable.setVisible(true);
