@@ -14,10 +14,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.util.Random;
 
 public class Phase3
@@ -75,16 +73,29 @@ public class Phase3
          myCardTable.pnlHumanHand.add(humanLabels[k]);
       }
       
-      //Make cards aka buttons fit visual scheme
-//      for (k = 0; k < myCardTable.pnlHumanHand.getComponentCount(); k++)
-//      {
-//         ((JButton) myCardTable.pnlHumanHand.getComponent(k)).setBorderPainted(false);
-//      }
+      // Gameplay
+      // randomly picks who starts 0 = computer, 1 = human
+      Random rand1 = new Random();
+      int turn = rand1.nextInt(1);
       
-      //for testing
+      // this works, but not in the while loop - keeps executing
+      if (turn == 0)
+      {
+         // computer plays a card randomly
+         Random rand2 = new Random();
+         int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
+         
+         JLabel tempLabel = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
+               .inspectCard(choice)));
+         myCardTable.pnlPlayArea.add(tempLabel);
+         myCardTable.pnlComputerHand.remove(choice);
+      }
+      
       int i = 0;
       while (i < NUM_CARDS_PER_HAND)
       {
+         
+         
          ((JButton) myCardTable.pnlHumanHand.getComponent(i)).setBorderPainted(false);
          // add the listener to the jbutton to handle the "pressed" event
          ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
@@ -103,19 +114,17 @@ public class Phase3
             myCardTable.setVisible(true);
          }
          });
+         
+         if (turn == 1)
+         {
+            // player went first, computer needs to play based on logic
+         }
+         
+         // decide win and update turn
          i++;
       }
-      //and two random cards in the play region (simulating a computer/hum ply)
+      // rules for computer play
       
-      for (k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playLabelText[k]);
-      }
-      
-      for (k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-      }
 
       // show everything to the user
       myCardTable.setVisible(true);
