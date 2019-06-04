@@ -30,7 +30,6 @@ public class Phase3
    public static void main(String[] args)
    {
       int k;
-      Icon tempIcon;
       //set up CardGameFramework
       int numPacksPerDeck = 1;
       int numJokersPerPack = 2;
@@ -96,18 +95,26 @@ public class Phase3
             
             Random rand2 = new Random();
             int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
-            
+            Card cCard = highCardGame.getHand(0).inspectCard(choice);
             playedCardLabels[0] = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
                   .inspectCard(choice)));//computer chooses a card.
+            
             int player = 0;
             int computer = 0;
             for (int i = 0; i < Card.valuRanks.length; i++)
             {
-               if (highCardGame.getHand(0).inspectCard(choice).getValue() == Card.valuRanks[i]);
+               if (cCard.getValue() == Card.valuRanks[i])
+               {
                   computer = i;
-               if (highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue() == Card.valuRanks[i])
+               }
+                  
+               if (temp.getValue() == Card.valuRanks[i])
+               {
                   player = i;
+               }
+                  
             }
+            myCardTable.pnlComputerHand.remove(choice);
             System.out.println(highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue());
             System.out.println("computer:" +computer);
             System.out.println("player:" + player);
