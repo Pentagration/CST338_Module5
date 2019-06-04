@@ -14,13 +14,11 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.util.Random;
 
-public class Phase3 implements ActionListener
+public class Phase3
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
@@ -75,15 +73,8 @@ public class Phase3 implements ActionListener
          myCardTable.pnlHumanHand.add(humanLabels[k]);
       }
       
-      //Make cards aka buttons fit visual scheme
-//      for (k = 0; k < myCardTable.pnlHumanHand.getComponentCount(); k++)
-//      {
-//         ((JButton) myCardTable.pnlHumanHand.getComponent(k)).setBorderPainted(false);
-//      }
-      
-      //for testing
       int i = 0;
-      while (i < NUM_CARDS_PER_HAND)
+      while (i < NUM_CARDS_PER_HAND)   
       {
          ((JButton) myCardTable.pnlHumanHand.getComponent(i)).setBorderPainted(false);
          // add the listener to the jbutton to handle the "pressed" event
@@ -94,29 +85,66 @@ public class Phase3 implements ActionListener
          {
             JButton btn = (JButton) e.getSource();
             // display/center the jdialog when the button is pressed
-            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
-            myCardTable.pnlHumanHand.remove((Integer)btn.getClientProperty("key"));
+            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);//remove player card from play are
+            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);//remove computer card from play are
+            myCardTable.pnlHumanHand.remove((Integer)btn.getClientProperty("key"));//remove card from hand
             for(int i = 0; i < myCardTable.pnlHumanHand.getComponentCount(); i++)
                ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
             playedCardLabels[1] = new JLabel(btn.getIcon());
-            myCardTable.pnlPlayArea.add(playedCardLabels[1]);
+            myCardTable.pnlPlayArea.add(playedCardLabels[1]);//player adds card to table
+            
+            Random rand2 = new Random();
+            int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
+            
+            playedCardLabels[0] = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
+                  .inspectCard(choice)));//computer chooses a card.
+            int player = 0;
+            int computer = 0;
+            for (int i = 0; i < Card.valuRanks.length; i++)
+            {
+               //if (highCardGame.getHand(0).inspectCard(choice).getValue() == Card.valuRanks[i]);
+                 // computer = i;
+               if (highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue() == Card.valuRanks[i])
+                  player = i;
+            }
+            System.out.println(highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue());
+            //System.out.println("computer:" +computer);
+            System.out.println("player:" + player);
+            if (computer > player)
+               System.out.println("computer wins!");
+            else
+               System.out.println("player wins!");
+            myCardTable.pnlPlayArea.add(playedCardLabels[0]);//computer adds card to table
+            //if (playedCardLabels[0].getIcon() > playedCardLabels[1])
             myCardTable.setVisible(true);
          }
          });
+         /*
+         if (turn == 1 && myCardTable.pnlPlayArea.getComponentCount() == 1)
+         {
+            // player went first, computer needs to play based on logic
+            for (int j = 0; j < myCardTable.pnlComputerHand.getComponentCount(); j++)
+            {
+               int high = -1;
+               int low = -1;
+               
+               // if a card is higher than player and lower than other high cards
+            }
+         }
+         
+         // decide win and update turn
+         // if player card > computer card turn = 1 and clear
+         playerValue = 20;
+         if (playerValue > compValue)
+         {
+            turn = 1;
+            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);
+            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
+         }
+         */
          i++;
       }
-      //and two random cards in the play region (simulating a computer/hum ply)
       
-      for (k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playLabelText[k]);
-      }
-      
-      for (k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-      }
-
       // show everything to the user
       myCardTable.setVisible(true);
    }
@@ -132,13 +160,6 @@ public class Phase3 implements ActionListener
       Card temp = new Card(Card.cValue[value], Card.Suit.values()[suit]);
 
       return temp;
-   }
-
-   @Override
-   public void actionPerformed(ActionEvent e)
-   {
-      // TODO Auto-generated method stub
-      
    }
 }
 
