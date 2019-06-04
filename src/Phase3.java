@@ -14,6 +14,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import java.util.Random;
@@ -26,11 +27,12 @@ public class Phase3
    static JButton[] humanLabels = new JButton[NUM_CARDS_PER_HAND];
    static JLabel[] playedCardLabels  = new JLabel[NUM_PLAYERS];
    static JLabel[] playLabelText  = new JLabel[NUM_PLAYERS];
+   static ArrayList<Integer> playerList = new ArrayList<Integer>();
+   static ArrayList<Integer> computerList = new ArrayList<Integer>();
 
    public static void main(String[] args)
    {
       int k;
-      Icon tempIcon;
       //set up CardGameFramework
       int numPacksPerDeck = 1;
       int numJokersPerPack = 2;
@@ -85,69 +87,78 @@ public class Phase3
          {
             JButton btn = (JButton) e.getSource();
             // display/center the jdialog when the button is pressed
-            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);//remove player card from play are
-            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);//remove computer card from play are
-            myCardTable.pnlHumanHand.remove((Integer)btn.getClientProperty("key"));//remove card from hand
-            for(int i = 0; i < myCardTable.pnlHumanHand.getComponentCount(); i++)
-               ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
+            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);//remove player card from play area
+            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);//remove computer card from play area
+            Card temp = highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key"));
+            myCardTable.pnlHumanHand.getComponent((Integer)btn.getClientProperty("key")).setEnabled(false);
             playedCardLabels[1] = new JLabel(btn.getIcon());
-            myCardTable.pnlPlayArea.add(playedCardLabels[1]);//player adds card to table
             
             Random rand2 = new Random();
             int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
-            
+            Card cCard = highCardGame.getHand(0).inspectCard(choice);
             playedCardLabels[0] = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
                   .inspectCard(choice)));//computer chooses a card.
+            
             int player = 0;
             int computer = 0;
             for (int i = 0; i < Card.valuRanks.length; i++)
             {
-               //if (highCardGame.getHand(0).inspectCard(choice).getValue() == Card.valuRanks[i]);
-                 // computer = i;
-               if (highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue() == Card.valuRanks[i])
+               if (cCard.getValue() == Card.valuRanks[i])
+               {
+                  computer = i;
+               }
+                  
+               if (temp.getValue() == Card.valuRanks[i])
+               {
                   player = i;
+               }  
             }
-            System.out.println(highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue());
-            //System.out.println("computer:" +computer);
-            System.out.println("player:" + player);
+            if (computer == 0) {computer = 20;}
+            if (player == 0) {player = 20;}
             if (computer > player)
-               System.out.println("computer wins!");
+            {
+               computerList.add(computer);
+               computerList.add(player);
+            }
+            else if (player > computer)
+            {
+               playerList.add(computer);
+               playerList.add(player);
+            }
             else
-               System.out.println("player wins!");
+            {
+               computerList.add(computer);
+               playerList.add(player);
+            }
+            int playedCards = playerList.size() + computerList.size();
+               
+            myCardTable.pnlComputerHand.remove(choice);
+            if (playedCards == 14)
+            {
+               if (computerList.size() > playerList.size())
+               {
+                  JLabel cpuWin = new JLabel("Computer wins");
+                  myCardTable.pnlPlayArea.add(cpuWin);
+               }
+               else
+               {
+                  JLabel playerWin = new JLabel("You win");
+                  myCardTable.pnlPlayArea.add(playerWin);
+               }
+                  
+            }
             myCardTable.pnlPlayArea.add(playedCardLabels[0]);//computer adds card to table
-            //if (playedCardLabels[0].getIcon() > playedCardLabels[1])
+            myCardTable.pnlPlayArea.add(playedCardLabels[1]);//player adds card to table
             myCardTable.setVisible(true);
          }
          });
-         /*
-         if (turn == 1 && myCardTable.pnlPlayArea.getComponentCount() == 1)
-         {
-            // player went first, computer needs to play based on logic
-            for (int j = 0; j < myCardTable.pnlComputerHand.getComponentCount(); j++)
-            {
-               int high = -1;
-               int low = -1;
-               
-               // if a card is higher than player and lower than other high cards
-            }
-         }
          
-         // decide win and update turn
-         // if player card > computer card turn = 1 and clear
-         playerValue = 20;
-         if (playerValue > compValue)
-         {
-            turn = 1;
-            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);
-            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);
-         }
-         */
          i++;
       }
       
       // show everything to the user
       myCardTable.setVisible(true);
-   }
+   }//main
 
    static Card generateRandomCard()
    {
@@ -315,8 +326,8 @@ class Card
     * A public static final char cValue[] stores the values of each card 1-9 and
     * T-A.  Ten is represented by 'T', not '10'.
     */
-   public static final char cValue[] = {'X', 'K', 'Q', 'J', 'T', '9', '8', '7',
-         '6', '5', '4', '3', '2', 'A'};
+   public static final char cValue[] = {'A', '2', '3', '4', '5', '6', '7', '8',
+         '9', 'T', 'J', 'Q', 'K', 'X'};
    public static char[] valuRanks = {'A', '2', '3', '4', '5', '6', '7', '8',
          '9', 'T', 'J', 'Q', 'K', 'X'};
    private char value;
