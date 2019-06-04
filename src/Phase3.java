@@ -14,13 +14,11 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.util.Random;
 
-public class Phase3 implements ActionListener
+public class Phase3
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
@@ -55,8 +53,8 @@ public class Phase3 implements ActionListener
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
       //Create labels and text for the playing area
-      playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));
-      playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));
+      playedCardLabels[0] = new JLabel(GUICard.getIcon(generateRandomCard()));//computer
+      playedCardLabels[1] = new JLabel(GUICard.getIcon(generateRandomCard()));//player
       playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
       playLabelText[1] = new JLabel("Player", JLabel.CENTER);
       
@@ -75,37 +73,57 @@ public class Phase3 implements ActionListener
          myCardTable.pnlHumanHand.add(humanLabels[k]);
       }
       
-      //Make cards aka buttons fit visual scheme
-//      for (k = 0; k < myCardTable.pnlHumanHand.getComponentCount(); k++)
-//      {
-//         ((JButton) myCardTable.pnlHumanHand.getComponent(k)).setBorderPainted(false);
-//      }
-      
-      //for testing
-      ((JButton) myCardTable.pnlHumanHand.getComponent(1)).setBorderPainted(false);
-      // add the listener to the jbutton to handle the "pressed" event
-      ((JButton) myCardTable.pnlHumanHand.getComponent(1)).addActionListener(new ActionListener()
+      int i = 0;
+      while (i < NUM_CARDS_PER_HAND)   
       {
-        public void actionPerformed(ActionEvent e)
-        {
-          // display/center the jdialog when the button is pressed
-           myCardTable.pnlPlayArea.add(humanLabels[1]);
-           myCardTable.pnlHumanHand.remove(1);
-        }
-      });
+         ((JButton) myCardTable.pnlHumanHand.getComponent(i)).setBorderPainted(false);
+         // add the listener to the jbutton to handle the "pressed" event
+         ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
+         ((JButton) myCardTable.pnlHumanHand.getComponent(i)).addActionListener(new ActionListener()
+         {
+         public void actionPerformed(ActionEvent e)
+         {
+            JButton btn = (JButton) e.getSource();
+            // display/center the jdialog when the button is pressed
+            myCardTable.pnlPlayArea.remove(playedCardLabels[1]);//remove player card from play area
+            myCardTable.pnlPlayArea.remove(playedCardLabels[0]);//remove computer card from play area
+            Card temp = highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key"));
+            myCardTable.pnlHumanHand.remove((Integer)btn.getClientProperty("key"));//remove card from hand
+            for(int i = 0; i < myCardTable.pnlHumanHand.getComponentCount(); i++)
+               ((JButton) myCardTable.pnlHumanHand.getComponent(i)).putClientProperty("key", i);
+            playedCardLabels[1] = new JLabel(btn.getIcon());
+            myCardTable.pnlPlayArea.add(playedCardLabels[1]);//player adds card to table
+            
+            Random rand2 = new Random();
+            int choice = rand2.nextInt(myCardTable.pnlComputerHand.getComponentCount());
+            
+            playedCardLabels[0] = new JLabel(GUICard.getIcon(highCardGame.getHand(0)
+                  .inspectCard(choice)));//computer chooses a card.
+            int player = 0;
+            int computer = 0;
+            for (int i = 0; i < Card.valuRanks.length; i++)
+            {
+               if (highCardGame.getHand(0).inspectCard(choice).getValue() == Card.valuRanks[i]);
+                  computer = i;
+               if (highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue() == Card.valuRanks[i])
+                  player = i;
+            }
+            System.out.println(highCardGame.getHand(1).inspectCard((Integer)btn.getClientProperty("key")).getValue());
+            System.out.println("computer:" +computer);
+            System.out.println("player:" + player);
+            if (computer > player)
+               System.out.println("computer wins!");
+            else
+               System.out.println("player wins!");
+            myCardTable.pnlPlayArea.add(playedCardLabels[0]);//computer adds card to table
+            //if (playedCardLabels[0].getIcon() > playedCardLabels[1])
+            myCardTable.setVisible(true);
+         }
+         });
+         
+         i++;
+      }
       
-      
-      //and two random cards in the play region (simulating a computer/hum ply)
-//      for (k = 0; k < NUM_PLAYERS; k++)
-//      {
-//         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-//      }
-//      
-//      for (k = 0; k < NUM_PLAYERS; k++)
-//      {
-//         myCardTable.pnlPlayArea.add(playLabelText[k]);
-//      }
-
       // show everything to the user
       myCardTable.setVisible(true);
    }
@@ -121,13 +139,6 @@ public class Phase3 implements ActionListener
       Card temp = new Card(Card.cValue[value], Card.Suit.values()[suit]);
 
       return temp;
-   }
-
-   @Override
-   public void actionPerformed(ActionEvent e)
-   {
-      // TODO Auto-generated method stub
-      
    }
 }
 
@@ -199,7 +210,7 @@ class GUICard
    //A 2-D array to store cards representation and point values
    //14 = A thru K + X (X = Joker)
    //4 = suits
-   private static Icon[][] iconCards = new ImageIcon[14][4];
+   public static Icon[][] iconCards = new ImageIcon[14][4];
    private static Icon iconBack;
    static boolean iconsLoaded = false;
 
@@ -283,8 +294,8 @@ class Card
     * A public static final char cValue[] stores the values of each card 1-9 and
     * T-A.  Ten is represented by 'T', not '10'.
     */
-   public static final char cValue[] = {'X', 'K', 'Q', 'J', 'T', '9', '8', '7',
-         '6', '5', '4', '3', '2', 'A'};
+   public static final char cValue[] = {'A', '2', '3', '4', '5', '6', '7', '8',
+         '9', 'T', 'J', 'Q', 'K', 'X'};
    public static char[] valuRanks = {'A', '2', '3', '4', '5', '6', '7', '8',
          '9', 'T', 'J', 'Q', 'K', 'X'};
    private char value;
