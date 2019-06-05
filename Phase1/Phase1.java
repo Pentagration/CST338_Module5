@@ -8,7 +8,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Assign5 
+public class Phase1 
 {  
    //52 standard playing cards + 4 jokers + 1 back-of-card image = 57
    static final int NUM_CARD_IMAGES = 57; 
